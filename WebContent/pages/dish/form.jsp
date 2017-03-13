@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+             
+<jsp:include page="../../templates/head.jsp">
+	<jsp:param name="title" value="Sign In" />
+	<jsp:param name="css" value="css/login.css" />
+</jsp:include>
+
+
+	<c:if test="${!form.hasErrors() && form.isSubmitted()}">
+		<p class="alert alert-success">
+			The dish has been successfully saved.
+		</p>
+	</c:if>
+
+<form class="form-horizontal" method="POST">
+	<h2>New dish :</h2>
+	
+	<div class="form-group <c:if test="${form.errors.get(form.name)!=null}">has-error</c:if>">
+		<label for="name" class="col-sm-2 control-label">Name</label> 
+		<div class="col-sm-10">
+			<input name="${form.name}" value="${form.value(form.name)}" type="text" id="name" class="form-control" required autofocus>
+			<p class="text-danger">${form.errors.get(form.name)}</p>
+		</div> 
+	</div>
+	
+	<div class="form-group <c:if test="${form.errors.get(form.description)!=null}">has-error</c:if>">
+		<label for="description" class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-10"> 
+			<textarea id="description" name="${form.description}" class="form-control" rows="3">${form.value(form.description)}</textarea>
+			<p class="text-danger">${form.errors.get(form.description)}</p>
+		</div> 
+	</div>
+	
+	<div class="form-group <c:if test="${form.errors.get(form.price)!=null}">has-error</c:if>">
+		<label for="price" class="col-sm-2 control-label">Price</label>
+		<div class="col-sm-10"> 
+			<div class="input-group">
+      			<div class="input-group-addon">€</div>
+				<input name="${form.price}" value="${form.value(form.price)}" type="number" id="price" class="form-control" required>
+			</div>
+			<p class="text-danger">${form.errors.get(form.price)}</p>
+		</div> 
+	</div>
+	
+	<div class="form-group">
+		<label for="image" class="col-sm-2 control-label">Image</label>
+		<div class="col-sm-10"> 
+			<input name="${form.image}" id="image" type="file" style="display: none;">
+			<label for="image" class="btn btn-default btn-block">
+				<i class="fa fa-upload" aria-hidden="true"></i> Upload...
+			</label>
+			<p class="text-danger">${form.errors.get(form.image)}</p>
+		</div> 
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-offset-2 col-sm-2">
+			<button class="btn btn-primary btn-block" type="submit">Save</button>
+		</div>
+		<div class="col-sm-2">
+			<button class="btn btn-default btn-block" type="reset">Reset</button>
+		</div>
+	</div>
+</form>
+
+<%@ include file="../../templates/foot.jsp"%>
