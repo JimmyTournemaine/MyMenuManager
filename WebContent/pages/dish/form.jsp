@@ -2,17 +2,11 @@
 	pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
              
-<jsp:include page="../../templates/head.jsp">
-	<jsp:param name="title" value="Sign In" />
-	<jsp:param name="css" value="css/login.css" />
-</jsp:include>
-
-
-	<c:if test="${!form.hasErrors() && form.isSubmitted()}">
-		<p class="alert alert-success">
-			The dish has been successfully saved.
-		</p>
-	</c:if>
+<c:if test="${!form.hasErrors() && form.isSubmitted()}">
+	<p class="alert alert-success">
+		The dish has been successfully saved.
+	</p>
+</c:if>
 
 <form class="form-horizontal" method="POST">
 	<h2>New dish :</h2>
@@ -64,5 +58,3 @@
 		</div>
 	</div>
 </form>
-
-<%@ include file="../../templates/foot.jsp"%>

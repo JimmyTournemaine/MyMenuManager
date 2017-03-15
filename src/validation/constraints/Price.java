@@ -3,7 +3,7 @@ package validation.constraints;
 public class Price extends Decimal {
 
     public Price() {
-        super(2);
+        super(2, "The price entered is invalid.");
     }
 
     @Override

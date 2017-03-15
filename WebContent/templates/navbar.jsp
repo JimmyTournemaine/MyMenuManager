@@ -10,7 +10,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">My Menu Manager</a>
+			<a class="navbar-brand" href="${pageContext.servletContext.contextPath}">My Menu Manager</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,9 +18,8 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="#">
-						<i class="fa fa-cutlery" aria-hidden="true"></i>
-						Menu
+					<a href="${pageContext.servletContext.contextPath}/menu">
+						<i class="fa fa-cutlery" aria-hidden="true"></i> Menu
 					</a>
 				</li>
 				<c:if test="${sessionScope.user != null}">
@@ -29,7 +28,10 @@
 			            <i class="fa fa-lock" aria-hidden="true"></i> Administration
 			          	<span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="${pageContext.servletContext.contextPath}/dish/create">Create a dish</a></li>
+			            <li><a href="${pageContext.servletContext.contextPath}/admin/dish/index">List dishes</a></li>
+			            <li><a href="${pageContext.servletContext.contextPath}/admin/dish/create">Create a dish</a></li>
+			            <li role="separator" class="divider"></li>
+			            <li><a href="${pageContext.servletContext.contextPath}/admin/group/manage">Manage groups</a></li>
 			          </ul>
 			        </li>
 				</c:if>
@@ -43,7 +45,8 @@
 						<p class="navbar-text">Signed in as ${user.username}</p>
 						<li><a href="${pageContext.servletContext.contextPath}/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
 				</c:otherwise>
-			</c:choose>
+				</c:choose>
+			</ul>
 		</div>
 	</div>
 </nav>

@@ -9,9 +9,10 @@ import validation.constraints.ConstraintInterface;
 abstract public class AbstractForm {
 
     private Map<String, String> errors = new HashMap<String, String>();
-    private Map<String, Object> values = new HashMap<String, Object>();
+    protected Map<String, Object> values = new HashMap<String, Object>();
     protected Map<String, ConstraintInterface[]> constraints = new HashMap<String, ConstraintInterface[]>(); // constraints
     protected Validator validator = new Validator();
+    private boolean submitted = false;
 
     public Map<String, String> getErrors() {
         return errors;
@@ -22,7 +23,7 @@ abstract public class AbstractForm {
     }
 
     public boolean isSubmitted() {
-        return values.isEmpty() == false;
+        return submitted;
     }
 
     /**
@@ -32,6 +33,8 @@ abstract public class AbstractForm {
      * @return self
      */
     public AbstractForm handleRequest(HttpServletRequest request) {
+        if (request.getMethod().equals("POST")) submitted = true;
+
         for (String field : constraints.keySet()) {
             values.put(field, request.getParameter(field));
         }
@@ -58,11 +61,18 @@ abstract public class AbstractForm {
         return errors.isEmpty();
     }
 
-    public Object value(String field) {
+    public Object getValue(String field) {
         return values.get(field);
+    }
+    
+    public String value(String field) {
+        Object o = getValue(field);
+        if(o == null) return new String();
+        return o.toString();
     }
 
     public void setValue(String field, Object value) {
+        if (value == null) return;
         values.put(field, value);
     }
 }

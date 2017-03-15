@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<%@ include file="../../templates/head.jsp"%>
+	<title>Edit ${dish.name}</title>
+</head>
+<body>
+	<%@ include file="../../templates/navbar.jsp"%>
+	<div class="container">
+		<%@ include file="form.jsp"%>
+	</div>
+	<%@ include file="../../templates/foot.jsp"%>
+</body>
+</html>

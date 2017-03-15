@@ -3,9 +3,12 @@ package validation.constraints;
 public class Decimal extends AbstractConstraint {
 
     protected Integer precision;
-    
+
     public Decimal(int precision) {
         super("Please enter a valid decimal number");
+    }
+    public Decimal(int precision, String message) {
+        super(message);
     }
 
     @Override
