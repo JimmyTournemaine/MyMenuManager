@@ -10,7 +10,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">My Menu Manager</a>
+			<a href="${pageContext.servletContext.contextPath}" class="navbar-brand" href="#">My Menu Manager</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,9 +18,8 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="#">
-						<i class="fa fa-cutlery" aria-hidden="true"></i>
-						Menu
+					<a href="${pageContext.servletContext.contextPath}/pages/menu/menu.jsp">
+						<i class="fa fa-cutlery" aria-hidden="true"></i>Menu
 					</a>
 				</li>
 				<c:if test="${sessionScope.user != null}">
