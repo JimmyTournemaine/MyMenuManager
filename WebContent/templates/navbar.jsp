@@ -10,11 +10,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-<<<<<<< HEAD
-			<a class="navbar-brand" href="${pageContext.servletContext.contextPath}">My Menu Manager</a>
-=======
 			<a href="${pageContext.servletContext.contextPath}" class="navbar-brand" href="#">My Menu Manager</a>
->>>>>>> branch 'master' of https://github.com/JimmyTournemaine/MyMenuManager
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,13 +18,8 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-<<<<<<< HEAD
-					<a href="${pageContext.servletContext.contextPath}/menu">
-						<i class="fa fa-cutlery" aria-hidden="true"></i> Menu
-=======
 					<a href="${pageContext.servletContext.contextPath}/pages/menu/menu.jsp">
 						<i class="fa fa-cutlery" aria-hidden="true"></i>Menu
->>>>>>> branch 'master' of https://github.com/JimmyTournemaine/MyMenuManager
 					</a>
 				</li>
 				<c:if test="${sessionScope.user != null}">
