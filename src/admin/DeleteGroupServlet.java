@@ -13,7 +13,7 @@ import rmi.ClientRMI;
 /**
  * Servlet implementation class DeleteDishServlet
  */
-@WebServlet("/admin/dish/delete")
+@WebServlet("/admin/group/delete")
 public class DeleteGroupServlet extends HttpServlet {
 
     private static final long serialVersionUID = -1251923677208844438L;
@@ -27,7 +27,7 @@ public class DeleteGroupServlet extends HttpServlet {
 	    
 	    SimpleForm form = new SimpleForm();
 	    request.setAttribute("form", form);
-	    request.setAttribute("dish", dish);
+	    request.setAttribute("group", dish);
 		request.getServletContext().getRequestDispatcher("/pages/group/delete.jsp").forward(request, response);
 	}
 
@@ -43,7 +43,7 @@ public class DeleteGroupServlet extends HttpServlet {
         
 	    if(form.isSubmitted() && form.isValid()) {
 	        if(ClientRMI.getServer().deleteGroup(dish)){
-	            response.sendRedirect(request.getContextPath()+"/admin/dish");
+	            response.sendRedirect(request.getContextPath()+"/admin/group/manage");
 	            return;
 	        }
 	        request.setAttribute("formError", "An unknown error occured. Please retry later.");
