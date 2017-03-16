@@ -38,18 +38,15 @@
 			</table>			
 		</div>
 	<%@ include file="../../templates/foot.jsp"%>
+	<script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+	<script> 
+		$(document).ready(function(){
+    	$('#dishes_table').DataTable({
+    	});
+		});
+	</script>
 	</body>
 </html>
 
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
-<script> 
-$(document).ready(function(){
-    $('#dishes_table').DataTable({
-    });
-});
 
-</script>
 
-<jsp:include page="../../templates/foot.jsp">
-	<jsp:param name="script" value="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js" />
-</jsp:include>
