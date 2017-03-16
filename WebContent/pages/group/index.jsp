@@ -30,7 +30,11 @@
 				<div id="groups-container">
 					<c:forEach var="group" items="${groups}">
 						<div data-id="${group.id}" class="group-container">
-							<h3>${group.name} <small><a href="${pageContext.servletContext.contextPath}/admin/group/delete?id=${group.id}"><i class="text-danger fa fa-trash" aria-hidden="true"></i><span class="sr-only">Delete</span></a></small></h3>
+							<h3>${group.name} <small>
+								<a style="display: none;" class="text-danger" href="${pageContext.servletContext.contextPath}/admin/group/delete?id=${group.id}">
+									<i class="fa fa-trash" aria-hidden="true"></i>
+									<span class="sr-only">Delete</span>
+							</a></small></h3>
 							<ul>
 								<c:forEach var="aDish" items="${group.dishes}">
 									<li data-id="${aDish.id}" class="draggable">${aDish.name}</li>
