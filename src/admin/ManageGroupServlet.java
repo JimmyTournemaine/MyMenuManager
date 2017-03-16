@@ -26,7 +26,7 @@ public class ManageGroupServlet extends HttpServlet {
 		List<Dish> dishes = ClientRMI.getServer().getDishes();
 		Iterator<Dish> it = dishes.iterator();
 		while(it.hasNext()) { // Remove grouped dishes
-		    if(it.next().getGroup() != null)
+		    if(it.next().getGroupId() != null)
 		        it.remove();
 		}
 		

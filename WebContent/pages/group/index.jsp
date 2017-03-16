@@ -12,38 +12,139 @@
 	<%@ include file="../../templates/navbar.jsp"%>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6">					
-				<form class="form-inline">
-					<i class="fa fa-2x fa-plus-circle" aria-hidden="true"></i>
+			<div class="col-sm-6">
+				<form id="create-group-form" class="form-inline" method="POST" action="${pageContext.servletContext.contextPath}/admin/group/create">
 					<div class="form-group">
-						<input type="text" name="${form.name}" value="${form.value(form.name)}" placeholder="name" class="form-control"/>
+						<input id="name" type="text" name="name" placeholder="Group name" class="form-control"/>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-block">Save</button>
+						<button type="submit" class="btn btn-primary btn-block">Create</button>
 					</div>
 				</form>
 				<hr/>
-				<div id="group-container">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Groups</h2>
+				<div id="groups-container">
 					<c:forEach var="group" items="${groups}">
-						<h3>${group.name}</h3>
-						<ul>
-							<c:forEach var="aDish" items="${groups.dishes}">
-								<li id="dish-${aDish.id}">${aDish.name}</li>
-							</c:forEach>
-						</ul>
+						<div data-id="${group.id}" class="group-container">
+							<h3>${group.name}</h3>
+							<ul>
+								<c:forEach var="aDish" items="${group.dishes}">
+									<li data-id="${aDish.id}" class="draggable">${aDish.name}</li>
+								</c:forEach>
+							</ul>
+						</div>
 					</c:forEach>
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<div class="list-group">
+				<h2>Ungrouped Dishes</h2>
+				<ul id="dishes-list" style="min-height: 200px; border: gray 1px solid;">
 					<c:forEach var="dish" items="${dishes}">
-						<a href="#" class="list-group-item">${dish.name}</a>
+						<li data-id="${dish.id}" class="draggable list-group-item">${dish.name}</li>
 					</c:forEach>
-				</div>
+				</ul>
 			</div>
 		</div>
 	</div>
 	<%@ include file="../../templates/foot.jsp"%>
-	<script></script>
+	<script src="${pageContext.servletContext.contextPath}/jquery-ui/jquery-ui.min.js"></script>
+	<script>
+		$(function() {
+			var baseUrl = "${pageContext.request.contextPath}";
+			var failure = true;
+			
+			/* Drag & Drop */
+			var dragArgs = { // Draggable items
+					cursor: "crosshair",
+					snap: ".group-container, .dishes-list",
+					start: function(e,ui){
+				    	failure = true; // reset the flag
+				    },
+				    revert: function () {
+				        return failure;
+				    }
+				};
+			var dropArgs = {
+					  accept: ".draggable",
+					  drop: function(event, ui) {
+						  var dishId = ui.draggable.data('id');
+						  var groupDiv = $(this);
+						  var groupId = groupDiv.data('id');
+						  $.ajax({
+							  async: false,
+							  url : baseUrl+'/admin/group/assign',
+							  method: 'POST',
+							  data: {
+								  group: groupId,
+								  dish: dishId
+							  },
+							  success: function() {
+								  groupDiv.find('ul').append('<li id="dish-'+dishId+'" data-id="'+dishId+'" class="draggable">'+ui.draggable.text()+'</li>');
+								  groupDiv.find('li#dish-'+dishId).draggable(dragArgs);
+								  ui.draggable.remove();
+								  failure = false;
+							  }
+						  });
+					  }
+				};
+			
+			$( ".draggable" ).draggable(dragArgs);
+			$( ".group-container" ).droppable(dropArgs); // set group (<-)
+			$( "#dishes-list" ).droppable({ // unset group (->)
+				  accept: ".draggable",
+				  drop: function(event, ui) {
+					  var dishId = ui.draggable.data('id');
+					  var ungroupList = $(this);
+					  $.ajax({
+						  async: false,
+						  url : baseUrl+'/admin/group/unassign',
+						  method: 'POST',
+						  data: {
+							  dish: dishId
+						  },
+						  success: function() {
+							  var id = ui.draggable.data('id');
+							  var name = ui.draggable.text();
+							  ungroupList.prepend('<li id="dish-'+id+'" data-id="'+id+'" class="draggable list-group-item">'+name+'</li>');
+							  ungroupList.find("li#dish-"+id).draggable(dragArgs);
+							  ui.draggable.remove();
+							  failure = false;
+						  }
+					  });
+				  }
+			});
+			
+			/* AJAX query to create a group */
+			$("#create-group-form").submit(function(event){
+				event.preventDefault();
+				var name = $(this).find('#name').val();
+				var form = $(this);
+				$.ajax({
+					url: form.attr("action"),
+					data: {
+						name: name
+					},
+					method: 'POST',
+					success: function(data, textStatus, jqXHR ){
+						form.removeClass("has-error");
+						form.addClass("has-success");
+						$("#groups-container").prepend(
+							'<div id="group-'+data.id+'"data-id="'+data.id +'" class="group-container">' +
+							'<h3>'+ data.name +'</h3><ul></ul></div>'
+						);
+						$('#group-'+data.id).droppable(dropArgs); // Add to droppable set
+					},
+					error: function(jqXHR, textStatus, errorThrown) {
+						form.removeClass("has-success")
+						form.addClass("has-error");
+					}
+				});
+			});
+		})
+	</script>
 </body>
 </html>

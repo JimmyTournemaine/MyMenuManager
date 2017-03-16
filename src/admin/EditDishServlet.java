@@ -24,6 +24,7 @@ public class EditDishServlet extends HttpServlet {
 	    if(dish == null) {
 	        return;
 	    }
+	    request.setAttribute("dish", dish);
 	            
         if (request.getAttribute("form") == null) {
             DishForm form = new DishForm(dish);

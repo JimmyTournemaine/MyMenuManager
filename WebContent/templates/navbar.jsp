@@ -19,7 +19,7 @@
 			<ul class="nav navbar-nav">
 				<li>
 					<a href="${pageContext.servletContext.contextPath}/pages/menu/menu.jsp">
-						<i class="fa fa-cutlery" aria-hidden="true"></i>Menu
+						<i class="fa fa-cutlery" aria-hidden="true"></i> Menu
 					</a>
 				</li>
 				<c:if test="${sessionScope.user != null}">
@@ -28,7 +28,7 @@
 			            <i class="fa fa-lock" aria-hidden="true"></i> Administration
 			          	<span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="${pageContext.servletContext.contextPath}/admin/dish/index">List dishes</a></li>
+			            <li><a href="${pageContext.servletContext.contextPath}/admin/dish">List dishes</a></li>
 			            <li><a href="${pageContext.servletContext.contextPath}/admin/dish/create">Create a dish</a></li>
 			            <li role="separator" class="divider"></li>
 			            <li><a href="${pageContext.servletContext.contextPath}/admin/group/manage">Manage groups</a></li>
