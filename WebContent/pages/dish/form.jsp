@@ -9,7 +9,6 @@
 </c:if>
 
 <form class="form-horizontal" method="POST">
-	<h2>New dish :</h2>
 	
 	<div class="form-group <c:if test="${form.errors.get(form.name)!=null}">has-error</c:if>">
 		<label for="name" class="col-sm-2 control-label">Name</label> 
@@ -35,17 +34,6 @@
 				<input name="${form.price}" value="${form.value(form.price)}" type="number" id="price" class="form-control" required>
 			</div>
 			<p class="text-danger">${form.errors.get(form.price)}</p>
-		</div> 
-	</div>
-	
-	<div class="form-group">
-		<label for="image" class="col-sm-2 control-label">Image</label>
-		<div class="col-sm-10"> 
-			<input name="${form.image}" id="image" type="file" style="display: none;">
-			<label for="image" class="btn btn-default btn-block">
-				<i class="fa fa-upload" aria-hidden="true"></i> Upload...
-			</label>
-			<p class="text-danger">${form.errors.get(form.image)}</p>
 		</div> 
 	</div>
 	

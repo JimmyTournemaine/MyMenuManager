@@ -47,8 +47,6 @@ abstract public class AbstractForm {
      * @return If form values are valid
      */
     public boolean isValid() {
-        if (values.isEmpty()) return false;
-
         for (String field : constraints.keySet()) {
             for (ConstraintInterface constraint : constraints.get(field)) {
                 if (!constraint.valid(values.get(field))) {

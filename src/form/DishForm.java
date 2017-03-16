@@ -11,7 +11,6 @@ public class DishForm extends AbstractForm {
     private final static String name = "name";
     private final static String description = "description";
     private final static String price = "price";
-    private final static String image = "image";
     private Dish dish;
 
     public String getName() {
@@ -26,10 +25,6 @@ public class DishForm extends AbstractForm {
         return price;
     }
 
-    public String getImage() {
-        return image;
-    }
-
     public DishForm(Dish dish) {
         super();
 
@@ -38,13 +33,11 @@ public class DishForm extends AbstractForm {
         constraints.put(name, cs);
         constraints.put(description, cs);
         constraints.put(price, fl);
-        constraints.put(image, new ConstraintInterface[0]);
 
         if (dish != null) {
             setValue(name, dish.getName());
             setValue(description, dish.getDescription());
             setValue(price, dish.getPrice());
-            setValue(image, dish.getImage());
             this.dish = dish;
         } else {
             try {
