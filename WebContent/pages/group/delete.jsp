@@ -18,7 +18,7 @@
 				<i class="text-warning fa fa-exclamation-triangle" aria-hidden="true"></i>
 				Do you really want to delete the group : <strong>${group.name}</strong> ? It will be deleted permanently.
 			</p>
-			<a class="btn btn-default" href="${pageContext.servletContext.contextPath}/admin/dish">
+			<a class="btn btn-default" href="${pageContext.servletContext.contextPath}/admin/group/manage">
 				<i class="fa fa-chevron-left" aria-hidden="true"></i>
 				Back
 			</a>

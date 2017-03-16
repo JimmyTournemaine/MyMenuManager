@@ -30,7 +30,7 @@
 				<div id="groups-container">
 					<c:forEach var="group" items="${groups}">
 						<div data-id="${group.id}" class="group-container">
-							<h3>${group.name} <small>
+							<h3 class="group-name">${group.name} <small>
 								<a style="display: none;" class="text-danger" href="${pageContext.servletContext.contextPath}/admin/group/delete?id=${group.id}">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 									<span class="sr-only">Delete</span>
@@ -148,6 +148,14 @@
 					}
 				});
 			});
+			
+			/* Display trash on hover */
+			$("h3.group-name").hover(function(){ 
+				$(this).find('a').css('display', 'inline'); 
+			}, function(){ 
+				$(this).find('a').css('display', 'none');
+			});
+			
 		})
 	</script>
 </body>
