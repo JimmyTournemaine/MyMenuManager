@@ -16,22 +16,27 @@ import rmi.ClientRMI;
 /**
  * Servlet implementation class ListDishServlet
  */
-@WebServlet("/admin/dish")
-public class ListDishServlet extends HttpServlet {
+@WebServlet("/admin/menu")
+public class ListGroupMenu extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ListDishServlet() {
+	public ListGroupMenu() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
-		List<Dish> dishes = ClientRMI.getServer().getDishes();
-		request.setAttribute("dishes", dishes);
-		
-		this.getServletContext().getRequestDispatcher( "/pages/dish/index.jsp" ).forward( request, response );
-	}
+		List<DishGroup> groups = ClientRMI.getServer().getGroups();
+		List<Dish> dishes = ClientRMI.getServer().getUngroupedDishes();
 
+		request.setAttribute("dish_groups", groups);
+		request.setAttribute("dishes", dishes);
+
+
+		this.getServletContext().getRequestDispatcher( "/pages/menu/menu.jsp" ).forward( request, response );
+	}
 }
+
+
+

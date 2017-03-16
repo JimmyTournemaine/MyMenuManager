@@ -13,7 +13,7 @@
 	<body>
 		<%@ include file="../../templates/navbar.jsp"%>
 		<div class="container">
-			<table class="table table-striped table-hover">
+			<table class="table table-striped table-hover" id="table_id" class="display">
 			    <thead>
 			        <tr>
 			            <th scope="row">Name</th>
@@ -41,8 +41,7 @@
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 	<script> 
 		$(document).ready(function(){
-    	$('#dishes_table').DataTable({
-    	});
+		    $('#myTable').DataTable();
 		});
 	</script>
 	</body>
