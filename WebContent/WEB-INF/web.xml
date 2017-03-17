@@ -9,7 +9,7 @@
     <location>/errors/403.jsp</location>
   </error-page>
   <error-page>
-    <exception-type>java.lang.Exception</exception-type >
+    <exception-type>java.lang.Exception</exception-type>
     <location>/errors/failure.jsp</location>
   </error-page>
 </web-app>
