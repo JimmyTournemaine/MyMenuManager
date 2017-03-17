@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="true" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-             
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
 	<body>
 		<%@ include file="../../templates/navbar.jsp"%>
 		<div class="container">
-			<table class="table table-striped table-hover" id="dishes-list" class="display">
+			<table class="table table-striped table-hover" id="dishes-list">
 			    <thead>
 			        <tr>
 			            <th scope="row">Name</th>
@@ -26,7 +26,8 @@
     			<c:forEach var="dish" items="${dishes}">
 			        <tr>
 		        	    <td>${dish.name}</td>	
-		            	<td>${dish.price}€</td>
+		        	    <c:set var="price"><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${dish.price}" /></c:set>
+		            	<td>${price} €</td>
 		            	<td>
 		                	<a href="${pageContext.servletContext.contextPath}/admin/dish/edit?id=${dish.id}" class="teal-text"><i class="fa fa-pencil" aria-hidden="true"><span class="sr-only">Edit</span></i></a>
 		                	<a href="${pageContext.servletContext.contextPath}/admin/dish/delete?id=${dish.id}" class="red-text"><i class="fa fa-times" aria-hidden="true"><span class="sr-only">Delete</span></i></a>

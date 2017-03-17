@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import bean.Dish;
 import form.DishForm;
 import rmi.ClientRMI;
@@ -30,6 +31,7 @@ public class EditDishServlet extends HttpServlet {
             DishForm form = new DishForm(dish);
             request.setAttribute("form", form);
         }
+        
         this.getServletContext().getRequestDispatcher("/pages/dish/edit.jsp").forward(request,
                 response);
     }
