@@ -2,19 +2,34 @@
     pageEncoding="UTF-8" session="true"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+
+
+
+
 <!DOCTYPE html>
+
 <html lang="fr">
+
 	<head>
 		<%@ include file="../templates/head.jsp"%>
+		<style>
+			body {
+				background-image: url("${pageContext.servletContext.contextPath}/imageB/restaurant.jpg") ;
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+			h1 {
+				text-align : center;
+				color: white;
+			}
+		</style>
 		<title>Accueil</title>
 	</head>
 	<body>
 		<%@ include file="../../templates/navbar.jsp"%>
 		<div class="container">
-			<c:if test="${pageError != null}">
-				<p class="alert alert-danger">${pageError}</p>
-			</c:if>
-			<h1>Bonjour</h1>
+			<h1>My Menu Manager</h1>
 		</div>
 		<%@ include file="../templates/foot.jsp"%>
 	</body>

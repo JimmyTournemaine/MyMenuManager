@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Dish;
-import bean.DishGroup;
 import rmi.ClientRMI;
 
 /**

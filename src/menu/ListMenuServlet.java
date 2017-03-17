@@ -1,4 +1,4 @@
-package admin;
+package menu;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,11 +16,11 @@ import rmi.ClientRMI;
 /**
  * Servlet implementation class ListDishServlet
  */
-@WebServlet("/admin/menu")
-public class ListGroupMenu extends HttpServlet {
+@WebServlet("/menu/menu")
+public class ListMenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ListGroupMenu() {
+	public ListMenuServlet() {
 		super();
 	}
 
