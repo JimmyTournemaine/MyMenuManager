@@ -11,6 +11,9 @@
 	<body>
 		<%@ include file="../../templates/navbar.jsp"%>
 		<div class="container">
+			<c:if test="${pageError != null}">
+				<p class="alert alert-danger">${pageError}</p>
+			</c:if>
 			<h1>Bonjour</h1>
 		</div>
 		<%@ include file="../templates/foot.jsp"%>

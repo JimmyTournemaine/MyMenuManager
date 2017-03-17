@@ -7,6 +7,16 @@
 <head>
 	<%@ include file="../../templates/head.jsp"%>
 	<title>Manage Groups</title>
+	<style>
+		ul#dishes-list {
+			width: 100%;
+			height: 100%;
+			padding: 10px;
+			min-height: 200px; 
+			border: gray 1px solid;
+			border-radius: 5px;
+		}
+	</style>
 </head>
 <body>
 	<%@ include file="../../templates/navbar.jsp"%>
@@ -22,10 +32,6 @@
 					</div>
 				</form>
 				<hr/>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
 				<h2>Groups</h2>
 				<div id="groups-container">
 					<c:forEach var="group" items="${groups}">
@@ -44,13 +50,15 @@
 					</c:forEach>
 				</div>
 			</div>
-			<div class="col-sm-6">
-				<h2>Ungrouped Dishes</h2>
-				<ul id="dishes-list" style="min-height: 200px; border: gray 1px solid;">
-					<c:forEach var="dish" items="${dishes}">
-						<li data-id="${dish.id}" class="draggable list-group-item">${dish.name}</li>
-					</c:forEach>
-				</ul>
+			<div id="ungrouped-list" class="col-sm-6">
+				<div class="affix">
+					<h2>Ungrouped Dishes</h2>
+					<ul id="dishes-list">
+						<c:forEach var="dish" items="${dishes}">
+							<li data-id="${dish.id}" class="draggable list-group-item">${dish.name}</li>
+						</c:forEach>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -122,6 +130,16 @@
 				  }
 			});
 			
+			/* Display trash on hover */
+			function trashOnHover(h3) {
+				$("h3.group-name").hover(function(){ 
+					$(this).find('a').css('display', 'inline'); 
+				}, function(){ 
+					$(this).find('a').css('display', 'none');
+				});
+			}
+			trashOnHover($("h3.group-name"));
+			
 			/* AJAX query to create a group */
 			$("#create-group-form").submit(function(event){
 				event.preventDefault();
@@ -138,8 +156,13 @@
 						form.addClass("has-success");
 						$("#groups-container").prepend(
 							'<div id="group-'+data.id+'"data-id="'+data.id +'" class="group-container">' +
-							'<h3>'+ data.name +'</h3><ul></ul></div>'
+							'<h3 class="group-name">'+data.name+' <small>'+
+								'<a style="display: none;" class="text-danger" href="${pageContext.servletContext.contextPath}/admin/group/delete?id='+data.id+'">'+
+									'<i class="fa fa-trash" aria-hidden="true"></i>'+
+									'<span class="sr-only">Delete</span>'+
+							'</a></small></h3>'
 						);
+						trashOnHover($("div#group-"+data.id+" h3"));
 						$('#group-'+data.id).droppable(dropArgs); // Add to droppable set
 					},
 					error: function(jqXHR, textStatus, errorThrown) {
@@ -147,13 +170,6 @@
 						form.addClass("has-error");
 					}
 				});
-			});
-			
-			/* Display trash on hover */
-			$("h3.group-name").hover(function(){ 
-				$(this).find('a').css('display', 'inline'); 
-			}, function(){ 
-				$(this).find('a').css('display', 'none');
 			});
 			
 		})

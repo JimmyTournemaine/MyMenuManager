@@ -10,12 +10,15 @@
 	</head>
 	<body>
 		<%@ include file="../../templates/navbar.jsp"%>
-		<h1>Forbidden</h1>
-
-		<p>It looks like you are not allow to access to this page !</p>
-		<p>You can log in to the application by following 
-			<a href="${pageContext.servletContext.contextPath}/login">this link</a>.
-		</p>
+		
+		<div class="container">
+			<h1>Forbidden</h1>
+	
+			<p>It looks like you are not allow to access to this page !</p>
+			<p>You can log in to the application by following 
+				<a href="${pageContext.servletContext.contextPath}/login">this link</a>.
+			</p>				
+		</div>
 		<%@ include file="../../templates/foot.jsp"%>
 	</body>
 </html>

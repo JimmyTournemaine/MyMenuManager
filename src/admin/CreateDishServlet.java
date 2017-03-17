@@ -41,7 +41,7 @@ public class CreateDishServlet extends HttpServlet {
             System.out.println(dish.getName());
             if(ClientRMI.getServer().createDish(dish)) {
                 dish = ClientRMI.getServer().getDish(dish.getName()); // get persisted dish (we need the id)
-                response.sendRedirect("/admin/dish/edit?id="+dish.getId());
+                response.sendRedirect(request.getContextPath()+"/admin/dish/edit?id="+dish.getId());
                 return;
             }
             request.setAttribute("formError", "Une erreur est survenue.");
