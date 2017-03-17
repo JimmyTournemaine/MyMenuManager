@@ -18,7 +18,7 @@
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="${pageContext.servletContext.contextPath}/menu/menu">
+					<a href="${pageContext.servletContext.contextPath}/menu">
 						<i class="fa fa-cutlery" aria-hidden="true"></i> Menu
 					</a>
 				</li>

@@ -14,12 +14,19 @@
 	<head>
 		<%@ include file="../templates/head.jsp"%>
 		<style>
+		
+			@font-face {
+    			font-family: 'Amontillados';
+    			src: url('/fonts/Amontillados.ttf') format('ttf');
+    		}
+    		
 			body {
 				background-image: url("${pageContext.servletContext.contextPath}/imageB/restaurant.jpg") ;
 				background-size: cover;
 				background-repeat: no-repeat;
 			}
 			h1 {
+			    font-family: 'Amontillados', Arial, serif;
 				text-align : center;
 				color: white;
 			}

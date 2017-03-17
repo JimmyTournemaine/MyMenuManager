@@ -16,7 +16,7 @@ import rmi.ClientRMI;
 /**
  * Servlet implementation class ListDishServlet
  */
-@WebServlet("/menu/menu")
+@WebServlet("/menu")
 public class ListMenuServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -13,12 +13,13 @@
 	<body>
 		<%@ include file="../../templates/navbar.jsp"%>
 		<div class="container">
-			
+		<a href="${pageContext.servletContext.contextPath}/menu/pdf"><input type="button" value="Télécharger Menu"></a>			
 		<c:forEach var="dish_group" items="${dish_groups}">
 			        <ul> <h3>${dish_group.name}</h3>	
 			        	<c:forEach var="dish" items="${dish_group.getDishes()}">
 			        	      <li>
-			        	      		${dish.name}
+			        	      	${dish.name} 
+			        	 		${dish.price} €
 			        	      </li>      
 			        	 </c:forEach>              
 			        </ul>
@@ -27,11 +28,11 @@
 			        	      <li>
 			        	      		${dish.name} (pas de groupe)
 			        	      </li>      
-			        	 </c:forEach>   
+			        	 </c:forEach>  
 
 		
 					
-		</div>
+		</div>		
 	<%@ include file="../../templates/foot.jsp"%>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 	<script> 
